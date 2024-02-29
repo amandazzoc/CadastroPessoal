@@ -24,6 +24,7 @@
             $resto = $soma % 11;
             return $cpf[10] == ($resto < 2 ? 0 : 11 - $resto);
     }
+
     if(isset($_POST['submit']))
     {
         $nome = $_POST['nome'];
@@ -38,6 +39,11 @@
         $data_nascimento_formatada = date("Y-m-d", strtotime($data_nascimento)); // Formata a data para o formato do MySQL
         $hoje = new DateTime();
         $idade = $hoje->diff(new DateTime($data_nascimento))->y;
+
+        // Verifica se o e-mail tem um formato válido
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = "E-mail inválido!";
+        }
 
         if (!validateCpf($cpf)) {
             $errors['cpf'] = "CPF inválido!";
@@ -79,7 +85,7 @@
                     <div class="inputbox">
                         <label for="email" class="label">Email:</label>
                         <input type="email" name="email" id="email" class="inputUser" required>
-                        
+                        <?php if(isset($errors['email'])) { echo '<span class="error">'.$errors['email'].'</span>'; } ?>
                     </div>
                     <!--Telefone-->
                     <div class="inputbox">
