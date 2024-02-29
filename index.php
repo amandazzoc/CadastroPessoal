@@ -1,17 +1,31 @@
 <?php
+    include_once('config.php');
+    function validateCpf($cpf)
+    {
+        //troca tudo o que não for número para nada
+        $cpf = preg_replace('/[^0-9]/', '', $cpf);
+        //se não tiver 11 digitos será falso
+        if (strlen($cpf) != 11){
+            return false;
+        }
+        //calculo para a validação do cpf
+        for ($i = 0, $j = 10, $soma = 0; $i < 9; $i++, $j--)
+        //calcula a soma dos nove primeiros dígitos do CPF multiplicados pelos pesos (de 10 a 2)
+            $soma += $cpf[$i] * $j;
+        //calcula o resto da divisão da soma por 11
+            $resto = $soma % 11;
+        //verifica se o dígito verificador 1 (posição 10) é válido
+        if ($cpf[9] != ($resto < 2 ? 0 : 11 - $resto))
+        {
+            return false;
+        }
+        for ($i = 0, $j = 11, $soma = 0; $i < 10; $i++, $j--)
+            $soma += $cpf[$i] * $j;
+            $resto = $soma % 11;
+            return $cpf[10] == ($resto < 2 ? 0 : 11 - $resto);
+    }
     if(isset($_POST['submit']))
     {
-        // print_r($_POST['nome']);
-        // print_r($_POST['cpf']);
-        // print_r($_POST['email']);
-        // print_r($_POST['telefone']);
-        // print_r($_POST['estado_civil']);
-        // print_r($_POST['endereco']);
-        // print_r($_POST['cep']);
-        // print_r($_POST['data_nascimento']);
-
-        include_once('config.php');
-
         $nome = $_POST['nome'];
         $cpf = $_POST['cpf'];
         $email = $_POST['email'];
@@ -25,9 +39,12 @@
         $hoje = new DateTime();
         $idade = $hoje->diff(new DateTime($data_nascimento))->y;
 
+        if (!validateCpf($cpf)) {
+            $errors['cpf'] = "CPF inválido!";
+        } else {
         //Manda os dados para o banco
         $result = mysqli_query($conexao, "INSERT INTO usuarios(nome,cpf,email,telefone,estado_civil,endereco,cep,data_nascimento,idade) VALUES ('".$_POST['nome']."','".$_POST['cpf']."','".$_POST['email']."','".$_POST['telefone']."','".$_POST['estado_civil']."','".$_POST['endereco']."','".$_POST['cep']."','".$data_nascimento_formatada."','".$idade."')");
-
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -55,8 +72,8 @@
                     <!--CPF-->
                     <div class="inputbox">
                         <label for="cpf" class="label">CPF:</label>
-                        <input type="text" name="cpf" id="cpf" class="inputUser" required>
-                        
+                        <input type="text" name="cpf" id="cpf" class="inputUser cpf" required>
+                        <?php if(isset($errors['cpf'])) { echo '<span class="error">'.$errors['cpf'].'</span>'; } ?>
                     </div>
                     <!--Email-->
                     <div class="inputbox">
@@ -116,5 +133,14 @@
             </fieldset>
         </form>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <!--mascara para o cpf-->
+    <script>
+    $(document).ready(function(){
+        $('#cpf').mask('000.000.000-00', {reverse: true});
+    });
+    </script>
+
 </body>
 </html>

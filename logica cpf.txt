@@ -1,0 +1,2 @@
+9 primeiros digitos, o algoritmo vai achar os dois numeros seguintes que serão os números de verificação
+9 primeiros numeros x 2, 3, 4 ,5 ate o 10, vai somar os resultados e dividir por 11, vai pegar o resto, se a sobre for menor q 2, o primeiro digito vai ser 0, se for maior que 2 vai ser a sobra menos 11 e vai achar o primeiro digito de verificação

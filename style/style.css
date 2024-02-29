@@ -17,14 +17,16 @@ body {
     top: 50vh;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.164); /* cor do fundo com opacidade */
+    background-color: rgba(255, 255, 255, 0); /* cor do fundo com opacidade */
     border-radius: 2vh;
     padding: 2vh;
-    box-shadow: 0 10px 16px rgba(0, 0, 0, 0.151);
+   box-shadow: 0 10px 16px rgba(0, 0, 0, 0.151);  /* MUDARR */
     overflow: hidden; /* para ocultar o pseudo-elemento fora da caixa */
     width: 50vh;
 }
-
+.error{
+    color: red;
+}
 .box::before {
     content: "";
     position: absolute;
@@ -33,7 +35,7 @@ body {
     right: -20px;
     bottom: -20px;
     background-image: inherit; /* herda a imagem de fundo do body */
-    backdrop-filter: blur(10px); /* efeito de vidro */
+    backdrop-filter: blur(0px); /* efeito de vidro  MUDARR*/
     z-index: -1; /* coloca o pseudo-elemento atrás do conteúdo da caixa */
 }
 
