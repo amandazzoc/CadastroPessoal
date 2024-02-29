@@ -42,9 +42,12 @@
 
         // Verifica se o e-mail tem um formato válido
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = "E-mail inválido!";
+            $errors['email'] = "E-mail inválido!";
         }
-
+        if(!preg_match('/^[0-9]{5,5}([- ]?[0-9]{3,3})?$/', $cep)) {
+            $errors['cep'] = "CEP inválido!";
+        }
+        // Verifica se o cpf é valido
         if (!validateCpf($cpf)) {
             $errors['cpf'] = "CPF inválido!";
         } else {
@@ -116,6 +119,7 @@
                     <div class="inputbox">
                         <label for="cep" class="label">CEP:</label>
                         <input type="text" name="cep" id="cep" class="inputUser" required>
+                        <?php if(isset($errors['cep'])) { echo '<span class="error">'.$errors['cep'].'</span>'; } ?>
                         
                     </div> 
                     <div class="inputbox">
@@ -132,7 +136,7 @@
                     <!--Botões-->
                     <div class="boxbutton">
                         <input type="submit" name="submit" id="submit" class="button">
-                        <input type="reset" name="reset" id="reset" class="button" value="Limpar">
+                        <input type="reset" name="reset" id="reset" class="button" value="Cancelar">
                     </div>
                     
                 </div>
@@ -141,10 +145,19 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <!--mascara para o cpf-->
+    
     <script>
+    //mascara para o cpf
     $(document).ready(function(){
         $('#cpf').mask('000.000.000-00', {reverse: true});
+    });
+    //mascara para o telefone
+    $(document).ready(function(){
+        $('#telefone').mask('00 00000-0000', {reverse: true});
+    });
+    //mascara para o cep
+    $(document).ready(function(){
+        $('#cep').mask('00000-000', {reverse: true});
     });
     </script>
 

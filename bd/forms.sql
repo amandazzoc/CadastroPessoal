@@ -1,3 +1,4 @@
+create database cadastro;
 USE cadastro;
  CREATE TABLE usuarios (
  id INT not null AUTO_INCREMENT PRIMARY KEY, 
