@@ -44,6 +44,7 @@
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errors['email'] = "E-mail inválido!";
         }
+        // Verifica se o cep é valido
         if(!preg_match('/^[0-9]{5,5}([- ]?[0-9]{3,3})?$/', $cep)) {
             $errors['cep'] = "CEP inválido!";
         }
@@ -58,108 +59,113 @@
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
     <title>Cadastro</title>
 </head>
+
 <body>
     <div class="box">
-        <form action="index.php" method="POST">
-            <fieldset>
-                <div class="title">
-                    <h1>Cadastro</h1>
+        <div class="img-box">
+            <img src="imgs/singup.svg">
+        </div>
+        <div class="form-box">
+            <div class="title">
+                <h1>Cadastre-se</h1>
+            </div>
+            <form action="index.php" method="POST">
+                 <!--Nome Completo-->
+                <div class="inputbox">
+                    <label for="nome" class="label">Nome Completo:</label>
+                    <input type="text" name="nome" id="nome" class="inputUser" required>
                 </div>
                 
-                <div class="forms">
-                    <!--Nome Completo-->
-                    <div class="inputbox">
-                        <label for="nome" class="label">Nome Completo:</label>
-                        <input type="text" name="nome" id="nome" class="inputUser" required>
-                    </div>
-                    <!--CPF-->
-                    <div class="inputbox">
-                        <label for="cpf" class="label">CPF:</label>
-                        <input type="text" name="cpf" id="cpf" class="inputUser cpf" required>
-                        <?php if(isset($errors['cpf'])) { echo '<span class="error">'.$errors['cpf'].'</span>'; } ?>
-                    </div>
-                    <!--Email-->
-                    <div class="inputbox">
-                        <label for="email" class="label">Email:</label>
-                        <input type="email" name="email" id="email" class="inputUser" required>
-                        <?php if(isset($errors['email'])) { echo '<span class="error">'.$errors['email'].'</span>'; } ?>
-                    </div>
-                    <!--Telefone-->
-                    <div class="inputbox">
-                        <label for="telefone" class="label">Telefone:</label>
-                        <input type="tel" id="telefone" name="telefone" class="inputUser" required>
-                        <small>Formato: 13 99712-3456</small>
-                    </div>
-                    <!--Estado civil-->
-                    <div class="inputbox">
-                        <label for="estado_civil" class="label">Estado Civil:</label>
-                        <select name="estado_civil" class="formatbox">
-                            <option value="solteiro">Solteiro</option>
-                            <option value="casado">Casado</option>
-                            <option value="separado">Separado</option>
-                            <option value="divorciado">Divorciado</option>
-                            <option value="viuvo">Viúvo</option>
-                        </select>
-                    </div>
-                    
-                      
-                    <!--Endereço-->
-                    <div class="inputbox">
-                        <label for="endereco" class="label">Endereço:</label>
-                        <input type="text" id="endereco" name="endereco" class="inputUser" required>
-                        
-                    </div>  
-                    <!--CEP-->
-                    <div class="inputbox">
-                        <label for="cep" class="label">CEP:</label>
-                        <input type="text" name="cep" id="cep" class="inputUser" required>
-                        <?php if(isset($errors['cep'])) { echo '<span class="error">'.$errors['cep'].'</span>'; } ?>
-                        
-                    </div> 
-                    <div class="inputbox">
-                        <!--Data de Nascimento-->
-                        <label for="data_nascimento" class="label">Data de Nascimento:</label>
-                        <input type="date" name="data_nascimento" class="formatbox" required>
-                    </div>
-                    
-                    <!--Idade-->
-                    <div class="inputbox">
-                         <label for="idade" class="label">Idade: </label>
-                         <input type="text" id="idade" name="idade" class="inputUser" value="<?php echo $idade; ?>" reandoly>
-                    </div>  
-                    <!--Botões-->
-                    <div class="boxbutton">
-                        <input type="submit" name="submit" id="submit" class="button">
-                        <input type="reset" name="reset" id="reset" class="button" value="Cancelar">
-                    </div>
-                    
+                <!--Email-->
+                <div class="inputbox">
+                    <label for="email" class="label">Email:</label>
+                    <input type="email" name="email" id="email" class="inputUser" required>
+                    <?php if(isset($errors['email'])) { echo '<span class="error">'.$errors['email'].'</span>'; } ?>
                 </div>
-            </fieldset>
-        </form>
+                <!--CPF-->
+                <div class="inputbox w50">
+                    <label for="cpf" class="label">CPF:</label>
+                    <input type="text" name="cpf" id="cpf" class="inputUser cpf" required>
+                    <?php if(isset($errors['cpf'])) { echo '<span class="error">'.$errors['cpf'].'</span>'; } ?>
+                </div>
+                <!--Telefone-->
+                <div class="inputbox w50">
+                    <label for="telefone" class="label">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" class="inputUser" required>
+                    <small>Formato: 13 99712-3456</small>
+                </div>
+                <!--Estado civil-->
+                <div class="inputbox">
+                    <label for="estado_civil" class="label">Estado Civil:</label>
+                    <select name="estado_civil" class="formatbox">
+                        <option value="solteiro">Solteiro</option>
+                        <option value="casado">Casado</option>
+                        <option value="separado">Separado</option>
+                        <option value="divorciado">Divorciado</option>
+                        <option value="viuvo">Viúvo</option>
+                    </select>
+                </div>
+                <div class="inputbox w80">
+                    <!--Data de Nascimento-->
+                    <label for="data_nascimento" class="label">Data de Nascimento:</label>
+                    <input type="date" name="data_nascimento" class="formatbox" required>
+                </div>
+
+                <!--Idade-->
+                <div class="inputbox w20">
+                    <label for="idade" class="label">Idade: </label>
+                    <input  id="idade" name="idade" class="inputUser" value="<?php echo isset($idade) ? $idade : ''; ?>" reandoly style="cursor: not-allowed;">
+                </div>
+
+                <!--Endereço-->
+                <div class="inputbox">
+                    <label for="endereco" class="label">Endereço:</label>
+                    <input type="text" id="endereco" name="endereco" class="inputUser" required>
+
+                </div>
+                <!--CEP-->
+                <div class="inputbox">
+                    <label for="cep" class="label">CEP:</label>
+                    <input type="text" name="cep" id="cep" class="inputUser" required>
+                    <?php if(isset($errors['cep'])) { echo '<span class="error">'.$errors['cep'].'</span>'; } ?>
+
+                </div>
+                <!--Botões-->
+                <div class="inputbutton">
+                    <input type="submit" name="submit" id="submit" class="button w50">
+                    <input type="reset" name="reset" id="reset" class="button w50" value="Cancelar">
+                </div>
+
+
+
+            </form>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    
+
     <script>
-    //mascara para o cpf
-    $(document).ready(function(){
-        $('#cpf').mask('000.000.000-00', {reverse: true});
-    });
-    //mascara para o telefone
-    $(document).ready(function(){
-        $('#telefone').mask('00 00000-0000', {reverse: true});
-    });
-    //mascara para o cep
-    $(document).ready(function(){
-        $('#cep').mask('00000-000', {reverse: true});
-    });
+        //mascara para o cpf
+        $(document).ready(function () {
+            $('#cpf').mask('000.000.000-00', { reverse: true });
+        });
+        //mascara para o telefone
+        $(document).ready(function () {
+            $('#telefone').mask('00 00000-0000', { reverse: true });
+        });
+        //mascara para o cep
+        $(document).ready(function () {
+            $('#cep').mask('00000-000', { reverse: true });
+        });
     </script>
 
 </body>
+
 </html>
