@@ -11,5 +11,5 @@ USE cadastro;
  cep VARCHAR(255) NOT NULL,
  data_nascimento date NOT NULL,
  idade int NOT NULL);
- 
- TRUNCATE TABLE usuarios
+
+TRUNCATE TABLE usuarios

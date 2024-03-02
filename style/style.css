@@ -7,7 +7,6 @@
 }
 body{
     background: linear-gradient(90deg, rgba(123,212,255,1) 0%, rgba(0,86,150,1) 100%);
-
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -153,29 +152,8 @@ form .inputbox input:focus{
 form .inputbutton{
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
-/* form .inputbutton .buttone{
-    padding: 8px ;
-    background: #0f6120;
-    border-radius: 20px;
-    outline: none;
-    border: none;
-    margin-top: 10px;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-}
-form .inputbutton .buttonc{
-    padding: 8px ;
-    background: #942410;
-    border-radius: 20px;
-    outline: none;
-    border: none;
-    margin-top: 10px;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-} */
 form .inputbutton .buttone,
 form .inputbutton .buttonc {
     padding: 8px;
@@ -225,7 +203,6 @@ form .inputbutton .buttone:hover {
     }
 
 }
-
 small{
    color: rgb(66, 66, 66);
 }
@@ -240,6 +217,7 @@ h1::after{
     position: absolute;
     border-radius: 10px;
 }
+
 /* Customização da barra de rolagem */
 html ::-webkit-scrollbar {
     width: 10px;
