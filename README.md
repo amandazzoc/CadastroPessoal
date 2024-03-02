@@ -10,3 +10,4 @@
   <li><b> MySQL:</b> Banco de dados utilizado para armazenar as informações dos usuários cadastrados.</li>
 </ul>
 <p>Além disso, o projeto faz uso de bibliotecas externas como <b>jQuery</b>  para facilitar a manipulação do <b>DOM</b>  e <b>Popper.js</b>  para ajudar na criação de pop-ups informativos. O layout do projeto é responsivo, adaptando-se a diferentes tamanhos de tela, e utiliza uma paleta de cores que remete a tons de azul, criando uma aparência limpa e profissional.</p>
+![image](https://github.com/amandazzoc/CadastroPessoal/assets/100137341/c6434249-aec0-4966-9dc1-1fac16515e6d)
