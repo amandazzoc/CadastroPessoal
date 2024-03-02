@@ -17,6 +17,40 @@ body{
     padding: 20px;
     min-height: 100vh;
 }
+
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+.popup.show {
+    display: flex;
+}
+
+
+.w48{
+    width: 48%;
+    float: left;
+    padding-right: 15px;
+}
 .w50{
     width: 50%;
     float: left;
@@ -34,11 +68,11 @@ body{
 }
 .box{
     display: flex;
-    width: 1200px;
+    width: 70%;
 }
 .formatbox{
     background-color: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(40px);
+    backdrop-filter: blur(10px);
     padding: 10px ;
     width: 40%;
     border-radius: 20px;
@@ -61,8 +95,8 @@ body{
 }
 .form-box{
     background-color: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(40px);
-    padding: 30px 40px;
+    backdrop-filter: blur(10px);
+    padding: 15px 40px;
     width: 60%;
     border-radius: 0 20px 20px 0;
 }
@@ -101,6 +135,18 @@ form .inputbox input{
     color: #616161;
     transition: all 0.4s ease;
 }
+form .inputbox select{
+    width: 100%;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    outline: none;
+    border: 2px solid transparent;
+    padding: 5px 10px;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+}
 form .inputbox input:focus{
     border-color: #3876a2;
 }
@@ -108,9 +154,9 @@ form .inputbutton{
     display: flex;
     justify-content: space-between;
 }
-form .inputbutton .button{
+/* form .inputbutton .buttone{
     padding: 8px ;
-    background: #3876a2;
+    background: #0f6120;
     border-radius: 20px;
     outline: none;
     border: none;
@@ -119,6 +165,46 @@ form .inputbutton .button{
     cursor: pointer;
     font-size: 16px;
 }
+form .inputbutton .buttonc{
+    padding: 8px ;
+    background: #942410;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    margin-top: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+} */
+form .inputbutton .buttone,
+form .inputbutton .buttonc {
+    padding: 8px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    margin-top: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.5s, box-shadow 0.5s; /* Adiciona transição suave */
+}
+
+form .inputbutton .buttone {
+    background: #0f6120;
+}
+
+form .inputbutton .buttonc {
+    background: #942410;
+}
+
+
+form .inputbutton .buttonc:hover {
+    background-color: hsl(0, 97%, 42%); /* Botão fica mais claro ao passar o mouse */
+}
+form .inputbutton .buttone:hover {
+    background-color: hsl(120, 100%, 35%); /* Botão fica mais claro ao passar o mouse */
+}
+/* Aplica estilos quando a largura da tela é no máximo 930 pixels. */
 @media (max-width:930px) {
     .img-box{
         display: none;
@@ -131,16 +217,19 @@ form .inputbutton .button{
         border-radius: 20px;
     }
 }
+/* Aplica estilos quando a largura da tela é no máximo 500 pixels. */
 @media (max-width:500px) {
-    .w50{
+    .w50, .w48, .w20, .w80{
         width: 100%;
         padding: 0;
     }
+
 }
 
 small{
    color: rgb(66, 66, 66);
 }
+/* linha abaixo do titulo */
 h1::after{
     content: '';
     display: block;
@@ -150,4 +239,15 @@ h1::after{
     margin: 0 auto;
     position: absolute;
     border-radius: 10px;
+}
+/* Customização da barra de rolagem */
+html ::-webkit-scrollbar {
+    width: 10px;
+}
+html ::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    background: rgba(123,212,255,1);
+}
+html ::-webkit-scrollbar-track {
+    background: rgba(0,86,150,1);
 }
